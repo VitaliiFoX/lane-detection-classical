@@ -1,0 +1,16 @@
+[MAIN]
+ignore=.venv
+
+[BASIC]
+# Короткі імена з формул: координати, канали HSV, градієнти, коефіцієнти.
+good-names=i,j,k,n,t,x,y,h,s,v,w,a,b,c,gx,gy,dx,dy,xs,ys,mu,_
+# Тестам докстрінг не потрібен: назва тесту описує перевірку.
+no-docstring-rgx=^(_|test_)
+
+[DESIGN]
+max-args=8
+max-positional-arguments=8
+max-locals=20
+
+[FORMAT]
+max-line-length=100

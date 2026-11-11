@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Дані CULane і вибірка — не поширюємо (ліцензія). Комітимо лише список.
+data/*
+!data/README.md
+!data/sample.csv
+
+# Результати прогонів відтворюються командою main.py
+results/
+
+# Архіви для передачі вибірки
+*.zip
+
+# Системне
+.DS_Store
+Thumbs.db

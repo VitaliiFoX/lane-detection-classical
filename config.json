@@ -1,0 +1,77 @@
+{
+  "seed": 42,
+  "data": {
+    "culane_root": "data/CULane",
+    "sample_dir": "data/sample",
+    "sample_csv": "data/sample.csv",
+    "per_group": 20,
+    "groups": {
+      "normal": "test0_normal.txt",
+      "crowd": "test1_crowd.txt",
+      "shadow": "test3_shadow.txt",
+      "curve": "test6_curve.txt",
+      "night": "test8_night.txt"
+    }
+  },
+  "output_dir": "results",
+  "roi": {
+    "polygon": [[0.0, 1.0], [0.42, 0.45], [0.58, 0.45], [1.0, 1.0]]
+  },
+  "masks": {
+    "thickness": 16
+  },
+  "metrics": {
+    "ssim_window": 7,
+    "ssim_k1": 0.01,
+    "ssim_k2": 0.03,
+    "psnr_cap": 100.0
+  },
+  "hough": {
+    "rho_step": 1,
+    "theta_step_deg": 1,
+    "min_angle_deg": 20,
+    "max_lanes": 4,
+    "min_votes": 40,
+    "suppress_rho": 20,
+    "suppress_theta_deg": 5
+  },
+  "p1": {
+    "white_s_max": 0.2,
+    "white_v_min": 0.75,
+    "yellow_h_min": 35,
+    "yellow_h_max": 65,
+    "yellow_s_min": 0.35,
+    "yellow_v_min": 0.5,
+    "sobel_threshold": 0.3
+  },
+  "p2": {
+    "otsu_iterations": 2
+  },
+  "p3": {
+    "src": [[0.43, 0.48], [0.57, 0.48], [0.95, 0.95], [0.05, 0.95]],
+    "warp_size": [400, 600],
+    "warp_margin": 0.25,
+    "prewitt_threshold": 0.3,
+    "max_lanes": 4,
+    "peak_min_distance": 60,
+    "n_windows": 10,
+    "window_margin": 40,
+    "min_pixels": 30,
+    "poly_degree": 2
+  },
+  "p4": {
+    "tophat_width": 31,
+    "canny_kernel": 5,
+    "canny_sigma": 1.4,
+    "canny_low": 0.1,
+    "canny_high": 0.3
+  },
+  "checks": {
+    "offset_max_px": 5.0,
+    "dark_brightness": 0.4,
+    "noise_sigma": 20.0,
+    "psnr_min": 15.0,
+    "ssim_min": 0.6,
+    "synthetic_size": [320, 180]
+  }
+}
