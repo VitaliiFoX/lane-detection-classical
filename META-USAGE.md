@@ -12,3 +12,4 @@
 | 2026-11-11 | Фояк Віталій | Claude Code (Claude Opus 5.5) | каркас | «оформи проєкт у форматі cryptarc: план, пайплайни, правила, щоб асистенти могли працювати за планом» | структура репозиторію, README, AGENTS.md, PLAN.md, ARCHITECTURE.md, ADR.md, docs/, config.json, заготовки модулів із сигнатурами, скіли `.claude/skills` | склад пайплайнів і пороги — з погодженого з викладачкою ТЗ |
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F1 | «виконуй мої таски» | `lanes/filters.py`, `tests/test_filters.py` | потребує перевірки автором |
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F2 | «виконуй мої таски» | `lanes/io_utils.py`, `tests/test_io_utils.py` | потребує перевірки автором |
+| 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F4 | «виконуй мої таски» | `lanes/draw.py`, `tests/test_draw.py` | потребує перевірки автором |

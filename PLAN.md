@@ -33,7 +33,7 @@
 | [x] **F1** | `filters.apply_kernel` — ручна кореляція з ядром, краї `np.pad(mode="edge")` | — | тести 3×3 і 5×5 з ручним розрахунком; Максиму потрібна для Прюітта, тому першою |
 | [x] **F2** | `io_utils`: `load_rgb`, `read_lanes`, `save_png`, `ImageLoadError` | — | тести: битий файл, порожній файл, режими L і RGBA, порожній `.lines.txt` (C2) |
 | [ ] **F3** | `tools/make_sample.py`: 20 фото на групу з seed → `data/sample/`, `data/sample.csv` | F2, T0.3 | `data/sample.csv` у git, 100 рядків; архів `sample.zip` передано Максиму приватно |
-| [ ] **F4** | `draw.lanes_mask`, `draw.overlay` | F2 | тест: горизонтальна смуга в масці 20×20 дає рівно `thickness` білих рядків |
+| [x] **F4** | `draw.lanes_mask`, `draw.overlay` | F2 | тест: горизонтальна смуга в масці 20×20 дає рівно `thickness` білих рядків |
 | [ ] **F5** | `metrics`: `mse`, `psnr`, `ssim`, `iou` | — | MSE і PSNR пораховано вручну на 3×3; SSIM(x, x) = 1; IoU порожніх = 1 |
 | [ ] **F6** | `color.rgb_to_gray`, `rgb_to_hsv`, `white_yellow_mask` | — | HSV червоного, зеленого, синього, білого, чорного пікселя збігається з ручним |
 | [ ] **F7** | `sobel.sobel_gradients`, `sobel_magnitude` | F1 | вертикальний край 5×5: `gx` у центрі пораховано вручну, `gy = 0` |
