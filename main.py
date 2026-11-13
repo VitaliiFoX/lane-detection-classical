@@ -34,13 +34,17 @@ def main(argv: list[str] | None = None) -> None:
     """Запускає обрану команду з параметрами з конфігураційного файлу."""
     args = parse_args(argv)
     config = load_config(args.config)
-    if args.command == "run":
-        names = list(REGISTRY) if args.pipeline == "all" else [args.pipeline]
-        runner.run_pipelines(config, names, args.limit)
-    elif args.command == "report":
-        report.build_report(config)
-    else:
-        checks.run_checks(config)
+    try:
+        if args.command == "run":
+            names = list(REGISTRY) if args.pipeline == "all" else [args.pipeline]
+            runner.run_pipelines(config, names, args.limit)
+        elif args.command == "report":
+            report.build_report(config)
+        else:
+            checks.run_checks(config)
+    except FileNotFoundError as error:
+        # Немає вибірки чи результатів — коротке повідомлення замість трасування.
+        raise SystemExit(str(error)) from error
 
 
 if __name__ == "__main__":
