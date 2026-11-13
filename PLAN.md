@@ -35,7 +35,7 @@
 | [ ] **F3** | `tools/make_sample.py`: 20 фото на групу з seed → `data/sample/`, `data/sample.csv` | F2, T0.3 | `data/sample.csv` у git, 100 рядків; архів `sample.zip` передано Максиму приватно |
 | [x] **F4** | `draw.lanes_mask`, `draw.overlay` | F2 | тест: горизонтальна смуга в масці 20×20 дає рівно `thickness` білих рядків |
 | [x] **F5** | `metrics`: `mse`, `psnr`, `ssim`, `iou` | — | MSE і PSNR пораховано вручну на 3×3; SSIM(x, x) = 1; IoU порожніх = 1 |
-| [ ] **F6** | `color.rgb_to_gray`, `rgb_to_hsv`, `white_yellow_mask` | — | HSV червоного, зеленого, синього, білого, чорного пікселя збігається з ручним |
+| [x] **F6** | `color.rgb_to_gray`, `rgb_to_hsv`, `white_yellow_mask` | — | HSV червоного, зеленого, синього, білого, чорного пікселя збігається з ручним |
 | [ ] **F7** | `sobel.sobel_gradients`, `sobel_magnitude` | F1 | вертикальний край 5×5: `gx` у центрі пораховано вручну, `gy = 0` |
 | [ ] **F8** | `hough`: `accumulator`, `find_peaks`, `peaks_to_lanes`, `detect_lanes` | — | вертикальна лінія `x = 2` у 5×5 дає пік `θ = 0°`, `ρ = 2`; порожня маска → 0 смуг |
 | [ ] **F9** | `histogram.equalize_histogram` | — | 3×3 з трьома рівнями пораховано вручну; однотонне фото не змінюється |
