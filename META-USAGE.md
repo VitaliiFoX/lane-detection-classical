@@ -17,3 +17,4 @@
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F6 | «виконуй мої таски» | `lanes/methods/color.py`, `tests/test_color.py` | потребує перевірки автором |
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F7 | «виконуй мої таски» | `lanes/methods/sobel.py`, `tests/test_sobel.py` | потребує перевірки автором |
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F8 | «виконуй мої таски» | `lanes/methods/hough.py`, `tests/test_hough.py`, уточнення в `docs/pipelines.md` | потребує перевірки автором |
+| 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F9 | «виконуй мої таски» | `lanes/methods/histogram.py`, `tests/test_histogram.py` | потребує перевірки автором |
