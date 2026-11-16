@@ -56,7 +56,7 @@
 | [x] **M5** | `prewitt.prewitt_gradients`, `prewitt_magnitude` | F1 | вертикальний край 5×5 пораховано вручну |
 | [x] **M6** | `sliding_windows`: `column_histogram`, `find_base_peaks`, `track_lane`, `detect_lanes_top_view` | — | дві вертикальні смуги на 40×60 дають 2 смуги з правильними `x` |
 | [x] **M7** | `canny`: `gaussian_kernel`, `non_max_suppression`, `hysteresis`, `canny` | F1, F7 | ядро нормоване; гістерезис підхоплює слабкий піксель біля сильного й відкидає ізольований |
-| [ ] **M8** | Пайплайн `p3_top_view` | M2, M3, M5, M6, F6 | тест на синтетичному кадрі: відхилення ≤ `checks.offset_max_px` |
+| [x] **M8** | Пайплайн `p3_top_view` | M2, M3, M5, M6, F6 | тест на синтетичному кадрі: відхилення ≤ `checks.offset_max_px` |
 | [ ] **M9** | Пайплайн `p4_tophat` | M1, M2, M4, M7, F6, F8 | те саме |
 | [x] **M10** | `checks.mean_lane_offset`, `checks.run_checks` і `main.py check` → `results/c1_check.csv` | M2, F11 | 16 тест-кейсів C1 у CSV (C1) |
 | [ ] **M11** | `report.build_report` і `main.py report` → `summary.csv`, графіки | F11 | графіки IoU/PSNR/SSIM/час за групами в `results/figures/` (B2, C5) |

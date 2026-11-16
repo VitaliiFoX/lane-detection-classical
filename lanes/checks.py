@@ -5,11 +5,12 @@
 
 import csv
 from pathlib import Path
+from typing import Callable
 
 import numpy as np
 
 from lanes.config import project_path
-from lanes.pipelines import REGISTRY
+from lanes.pipelines import REGISTRY, PipelineResult
 from lanes.runner import PIPELINE_ERRORS
 from lanes.synthetic import make_road
 
@@ -56,8 +57,8 @@ def mean_lane_offset(gt_lanes: list[np.ndarray], pred_lanes: list[np.ndarray],
     return float(np.mean(offsets))
 
 
-def _synthetic_scenarios(config: dict) -> dict[str, dict]:
-    """Назва сценарію → аргументи ``make_road`` (окрім розміру кадру)."""
+def synthetic_scenarios(config: dict) -> dict[str, dict]:
+    """Назва синтетичного сценарію → аргументи ``make_road`` (окрім розміру кадру)."""
     settings = config["checks"]
     return {
         "synthetic_straight": {},
@@ -66,20 +67,30 @@ def _synthetic_scenarios(config: dict) -> dict[str, dict]:
     }
 
 
-def _synthetic_row(name: str, scenario: str, road_args: dict, config: dict) -> dict:
-    """Один пайплайн на одному синтетичному кадрі: відхилення проти порогу."""
+def synthetic_offset(run: Callable[[np.ndarray, dict], PipelineResult], config: dict,
+                     road_args: dict) -> float:
+    """Відхилення смуг пайплайна ``run`` від еталонних на синтетичному кадрі, px.
+
+    Кадр розміру ``checks.synthetic_size`` будує ``make_road(**road_args)``;
+    відхилення міряємо на рівнях ``checks.offset_levels`` (частки висоти).
+    Цією ж функцією користуються тести пайплайнів.
+    """
     settings = config["checks"]
     width, height = settings["synthetic_size"]
     image, gt_lanes = make_road(width, height, **road_args)
-    # Рівні y, на яких міряємо відхилення: частки висоти з конфігурації.
     ys = np.array(settings["offset_levels"]) * (height - 1)
+    return mean_lane_offset(gt_lanes, run(image, config).lanes, ys)
+
+
+def _synthetic_row(name: str, scenario: str, road_args: dict, config: dict) -> dict:
+    """Один пайплайн в одному синтетичному сценарії: відхилення проти порогу."""
     try:
-        offset = mean_lane_offset(gt_lanes, REGISTRY[name].run(image, config).lanes, ys)
+        offset = synthetic_offset(REGISTRY[name].run, config, road_args)
     except PIPELINE_ERRORS as error:
         # Пайплайн упав або ще не написаний — кейс не пройдено.
         print(f"    {name} / {scenario}: помилка {type(error).__name__}: {error}")
         offset = float("inf")
-    limit = settings["offset_max_px"]
+    limit = config["checks"]["offset_max_px"]
     return {"pipeline": name, "scenario": scenario, "value": f"{offset:.2f}",
             "threshold": f"{limit}", "passed": bool(offset <= limit)}
 
@@ -137,7 +148,7 @@ def run_checks(config: dict) -> list[dict]:
     for name in REGISTRY:
         if name == BASELINE:
             continue
-        for scenario, road_args in _synthetic_scenarios(config).items():
+        for scenario, road_args in synthetic_scenarios(config).items():
             rows.append(_synthetic_row(name, scenario, road_args, config))
         rows.append(_normal_group_row(name, table, config))
 
