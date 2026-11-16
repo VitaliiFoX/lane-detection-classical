@@ -26,3 +26,4 @@
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M3 | «знайди в плані мої таски і виконай їх» | `lanes/methods/perspective.py` (додано допоміжну `top_view_rectangle`), `tests/test_perspective.py` | потребує перевірки автором |
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M4 | «знайди в плані мої таски і виконай їх» | `lanes/methods/morphology.py`, `tests/test_morphology.py` | потребує перевірки автором |
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M5 | «знайди в плані мої таски і виконай їх» | `lanes/methods/prewitt.py`, `tests/test_prewitt.py` | потребує перевірки автором |
+| 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M6 | «знайди в плані мої таски і виконай їх» | `lanes/methods/sliding_windows.py`, `tests/test_sliding_windows.py` | потребує перевірки автором |
