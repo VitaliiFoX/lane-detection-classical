@@ -42,7 +42,7 @@
 | [x] **F10** | `threshold.otsu_threshold`, `otsu_binarize` | — | бімодальний 3×3 дає поріг між модами; ітерації звужують маску |
 | [x] **F11** | `runner.run_pipelines` і `main.py run`: стадії, `mask.png`, `overlay.png`, `results/metrics.csv`, час | F2, F4, F5 | `main.py run --pipeline p0 --limit 5` працює на вибірці (B1) |
 | [x] **F12** | Пайплайн `p1_color` | F6, F7, F8, M1, M2 | тест на синтетичному кадрі: відхилення ≤ `checks.offset_max_px` |
-| [ ] **F13** | Пайплайн `p2_otsu` | F6, F8, F9, F10, M1, M2 | те саме |
+| [x] **F13** | Пайплайн `p2_otsu` | F6, F8, F9, F10, M1, M2 | те саме |
 | [ ] **F14** | README: запуск з нуля на чистому клоні за інструкцією | F11 | інший учасник запустив без підказок (E1) |
 
 ## Сивопляс Максим
