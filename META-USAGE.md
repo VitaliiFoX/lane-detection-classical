@@ -21,3 +21,4 @@
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F10 | «виконуй мої таски» | `lanes/methods/threshold.py`, `tests/test_threshold.py` | потребує перевірки автором |
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F11 | «виконуй мої таски» | `lanes/runner.py`, `lanes/config.py` (`project_path`), `main.py`, `tests/test_runner.py` | потребує перевірки автором |
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F3 (код, без даних) | «виконуй мої таски» | `tools/make_sample.py`, `tests/test_make_sample.py` | потребує перевірки автором; задача відкрита, доки немає вибірки |
+| 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M1 | «знайди в плані мої таски і виконай їх» | `lanes/roi.py`, `tests/test_roi.py` | потребує перевірки автором |
