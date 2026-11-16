@@ -1,8 +1,7 @@
 """Крайні випадки для пайплайнів (M12): крихітні й однотонні фото.
 
-Пайплайн не має падати: повертає нуль смуг і всі свої стадії
-(``lanes/pipelines/AGENTS.md``). Поки перевіряємо готові пайплайни;
-p1 і p2 додамо до ``PIPELINES`` після задач F12 і F13.
+Жоден пайплайн p0–p4 не має падати: повертає нуль смуг і всі свої стадії
+(``lanes/pipelines/AGENTS.md``, критерій C2).
 """
 
 import numpy as np
@@ -11,13 +10,15 @@ import pytest
 from lanes.pipelines import REGISTRY
 from lanes.synthetic import make_road
 
-PIPELINES = ["p0", "p3", "p4"]
 # Назви стадій з таблиць docs/pipelines.md.
 STAGES = {
     "p0": [],
+    "p1": ["hsv_mask", "sobel_magnitude", "edges_roi", "hough_space"],
+    "p2": ["equalized", "otsu", "hough_space"],
     "p3": ["top_view", "prewitt_magnitude", "edges", "windows"],
     "p4": ["tophat", "canny", "edges_roi", "hough_space"],
 }
+PIPELINES = list(STAGES)
 # (висота, ширина): один піксель, 5×5 і невелике фото.
 SHAPES = [(1, 1), (5, 5), (40, 60)]
 # Чорне, сіре (однотонне) і біле фото.
@@ -50,3 +51,8 @@ def test_input_is_not_changed(config, name):
     before = image.copy()
     REGISTRY[name].run(image, config)
     np.testing.assert_array_equal(image, before)
+
+
+def test_every_registered_pipeline_is_covered():
+    # Новий пайплайн у реєстрі має потрапити і в ці перевірки.
+    assert PIPELINES == list(REGISTRY)

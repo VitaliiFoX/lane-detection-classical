@@ -36,3 +36,4 @@
 | 2026-11-16 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F12 | «виконуй мої таски» | `lanes/pipelines/p1_color.py`, `tests/test_p1_color.py`, `tests/helpers.py` | потребує перевірки автором |
 | 2026-11-16 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F13 | «виконуй мої таски» | `lanes/pipelines/p2_otsu.py`, `tests/test_p2_otsu.py`, статус у README | потребує перевірки автором |
 | 2026-11-16 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F3 (відбір) | «завантаж CULane і збери вибірку» | `data/sample.csv`, фільтр `data.archives` у `tools/make_sample.py` і `config.json`, `docs/data.md`, тест | потребує перевірки автором; 86 кадрів driver_193 ще не завантажено (квота Google Drive) |
+| 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M12 | «знайди в плані мої таски і виконай їх» | `tests/test_edge_cases.py` (додано p1 і p2) | потребує перевірки автором |
