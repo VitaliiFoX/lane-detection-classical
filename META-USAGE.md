@@ -23,3 +23,4 @@
 | 2026-11-13 | Фояк Віталій | Claude Code (Claude Opus 5.5) | F3 (код, без даних) | «виконуй мої таски» | `tools/make_sample.py`, `tests/test_make_sample.py` | потребує перевірки автором; задача відкрита, доки немає вибірки |
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M1 | «знайди в плані мої таски і виконай їх» | `lanes/roi.py`, `tests/test_roi.py` | потребує перевірки автором |
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M2 | «знайди в плані мої таски і виконай їх» | `lanes/synthetic.py`, `tests/test_synthetic.py` | потребує перевірки автором |
+| 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M3 | «знайди в плані мої таски і виконай їх» | `lanes/methods/perspective.py` (додано допоміжну `top_view_rectangle`), `tests/test_perspective.py` | потребує перевірки автором |
