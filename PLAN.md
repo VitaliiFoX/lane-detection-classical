@@ -52,7 +52,7 @@
 | [x] **M1** | `roi.roi_polygon`, `roi.roi_mask`, `roi.roi_top` | — | тест: трапеція на 10×10 — кутові пікселі поза ROI, центр низу в ROI |
 | [x] **M2** | `synthetic.make_road`: синтетичний кадр і еталонні смуги | — | тест: смуги на кадрі світлі, детермінованість за `seed` |
 | [x] **M3** | `perspective.homography`, `warp`, `transform_points` | — | одиничне перетворення не змінює 5×5; точки `src` переходять у `dst`; туди й назад = тотожність |
-| [ ] **M4** | `morphology.erode`, `dilate`, `opening`, `top_hat` | — | 5×5 з вузькою світлою смугою: top-hat лишає смугу, прибирає широку пляму |
+| [x] **M4** | `morphology.erode`, `dilate`, `opening`, `top_hat` | — | 5×5 з вузькою світлою смугою: top-hat лишає смугу, прибирає широку пляму |
 | [ ] **M5** | `prewitt.prewitt_gradients`, `prewitt_magnitude` | F1 | вертикальний край 5×5 пораховано вручну |
 | [ ] **M6** | `sliding_windows`: `column_histogram`, `find_base_peaks`, `track_lane`, `detect_lanes_top_view` | — | дві вертикальні смуги на 40×60 дають 2 смуги з правильними `x` |
 | [ ] **M7** | `canny`: `gaussian_kernel`, `non_max_suppression`, `hysteresis`, `canny` | F1, F7 | ядро нормоване; гістерезис підхоплює слабкий піксель біля сильного й відкидає ізольований |
