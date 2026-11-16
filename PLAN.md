@@ -23,7 +23,7 @@
   Максиму й викладачці. (A1)
 - [ ] **T0.2** · обидва · Склонувати, створити `.venv`, встановити
   `requirements.txt`, переконатися, що `python -m pytest` зелений. Після T0.1.
-- [ ] **T0.3** · Фояк · Завантажити тестову частину CULane за
+- [x] **T0.3** · Фояк · Завантажити тестову частину CULane за
   `docs/data.md`. Після T0.1.
 
 ## Фояк Віталій
@@ -32,7 +32,7 @@
 |---|---|---|---|
 | [x] **F1** | `filters.apply_kernel` — ручна кореляція з ядром, краї `np.pad(mode="edge")` | — | тести 3×3 і 5×5 з ручним розрахунком; Максиму потрібна для Прюітта, тому першою |
 | [x] **F2** | `io_utils`: `load_rgb`, `read_lanes`, `save_png`, `ImageLoadError` | — | тести: битий файл, порожній файл, режими L і RGBA, порожній `.lines.txt` (C2) |
-| [ ] **F3** | `tools/make_sample.py`: 20 фото на групу з seed → `data/sample/`, `data/sample.csv` | F2, T0.3 | `data/sample.csv` у git, 100 рядків; архів `sample.zip` передано Максиму приватно |
+| [x] **F3** | `tools/make_sample.py`: 20 фото на групу з seed → `data/sample/`, `data/sample.csv` | F2, T0.3 | `data/sample.csv` у git, 100 рядків; архів `sample.zip` передано Максиму приватно |
 | [x] **F4** | `draw.lanes_mask`, `draw.overlay` | F2 | тест: горизонтальна смуга в масці 20×20 дає рівно `thickness` білих рядків |
 | [x] **F5** | `metrics`: `mse`, `psnr`, `ssim`, `iou` | — | MSE і PSNR пораховано вручну на 3×3; SSIM(x, x) = 1; IoU порожніх = 1 |
 | [x] **F6** | `color.rgb_to_gray`, `rgb_to_hsv`, `white_yellow_mask` | — | HSV червоного, зеленого, синього, білого, чорного пікселя збігається з ручним |
