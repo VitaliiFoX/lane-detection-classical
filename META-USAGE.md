@@ -28,3 +28,4 @@
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M5 | «знайди в плані мої таски і виконай їх» | `lanes/methods/prewitt.py`, `tests/test_prewitt.py` | потребує перевірки автором |
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M6 | «знайди в плані мої таски і виконай їх» | `lanes/methods/sliding_windows.py`, `tests/test_sliding_windows.py` | потребує перевірки автором |
 | 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M7 | «знайди в плані мої таски і виконай їх» | `lanes/methods/canny.py`, `tests/test_canny.py` | потребує перевірки автором |
+| 2026-11-16 | Сивопляс Максим | Claude Code (Claude Fable 5.2) | M10 | «знайди в плані мої таски і виконай їх» | `lanes/checks.py`, `tests/test_checks.py`, ключ `checks.offset_levels` у `config.json`, уточнення в `docs/metrics.md` | потребує перевірки автором |

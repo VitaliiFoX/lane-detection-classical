@@ -58,7 +58,7 @@
 | [x] **M7** | `canny`: `gaussian_kernel`, `non_max_suppression`, `hysteresis`, `canny` | F1, F7 | ядро нормоване; гістерезис підхоплює слабкий піксель біля сильного й відкидає ізольований |
 | [ ] **M8** | Пайплайн `p3_top_view` | M2, M3, M5, M6, F6 | тест на синтетичному кадрі: відхилення ≤ `checks.offset_max_px` |
 | [ ] **M9** | Пайплайн `p4_tophat` | M1, M2, M4, M7, F6, F8 | те саме |
-| [ ] **M10** | `checks.mean_lane_offset`, `checks.run_checks` і `main.py check` → `results/c1_check.csv` | M2, F11 | 16 тест-кейсів C1 у CSV (C1) |
+| [x] **M10** | `checks.mean_lane_offset`, `checks.run_checks` і `main.py check` → `results/c1_check.csv` | M2, F11 | 16 тест-кейсів C1 у CSV (C1) |
 | [ ] **M11** | `report.build_report` і `main.py report` → `summary.csv`, графіки | F11 | графіки IoU/PSNR/SSIM/час за групами в `results/figures/` (B2, C5) |
 | [ ] **M12** | `tests/test_edge_cases.py`: 1×1, 5×5, однотонне, чорне, біле фото для p0–p4 | F12, F13, M8, M9 | жоден пайплайн не падає (C2) |
 

@@ -68,6 +68,7 @@
   },
   "checks": {
     "offset_max_px": 5.0,
+    "offset_levels": [0.6, 0.7, 0.8, 0.9],
     "dark_brightness": 0.4,
     "noise_sigma": 20.0,
     "psnr_min": 15.0,
