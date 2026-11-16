@@ -30,6 +30,7 @@ def _config(base, root):
     config = copy.deepcopy(base)
     config["data"].update(culane_root=str(root / "CULane"), sample_dir=str(root / "sample"),
                           sample_csv=str(root / "sample.csv"), per_group=2,
+                          archives=["driver_a", "driver_b"],
                           groups={"normal": "test0_normal.txt", "night": "test8_night.txt"})
     return config
 
@@ -62,6 +63,18 @@ def test_same_seed_same_sample(config, tmp_path):
     first = _rows(tmp_path)
     make_sample(config)
     assert _rows(tmp_path) == first
+
+
+def test_only_listed_archives(config, tmp_path):
+    # Архів driver_b не в списку, тож нічна група (вся з driver_b) — без кадрів.
+    _fake_culane(tmp_path / "CULane")
+    config = _config(config, tmp_path)
+    config["data"]["archives"] = ["driver_a"]
+    with pytest.raises(ValueError):
+        make_sample(config)
+    config["data"]["groups"] = {"normal": "test0_normal.txt"}
+    make_sample(config)
+    assert all(row["source"].startswith("driver_a/") for row in _rows(tmp_path))
 
 
 def test_missing_culane(config, tmp_path):

@@ -17,9 +17,10 @@ from lanes.runner import lines_path
 def make_sample(config: dict) -> int:
     """Відбирає ``per_group`` кадрів кожної групи з ``seed`` і копіює їх у ``sample_dir``.
 
-    Беремо лише кадри, у яких ``.lines.txt`` містить хоча б одну смугу.
-    Пише ``data/sample.csv`` (``group,image,source``) і повертає кількість
-    відібраних фото. Якщо CULane не знайдено — пояснює, що завантажити.
+    Беремо лише кадри з архівів ``data.archives``, у яких ``.lines.txt``
+    містить хоча б одну смугу. Пише ``data/sample.csv`` (``group,image,source``)
+    і повертає кількість відібраних фото. Якщо CULane не знайдено — пояснює,
+    що завантажити.
     """
     data = config["data"]
     culane = project_path(data["culane_root"])
@@ -34,10 +35,13 @@ def make_sample(config: dict) -> int:
     rows = []
     for group, list_name in data["groups"].items():
         # У списках CULane шляхи починаються з «/», відносно кореня набору.
-        listed = (lists / list_name).read_text(encoding="utf-8").split()
-        candidates = [path.lstrip("/") for path in listed
-                      if (culane / path.lstrip("/")).is_file()
-                      and read_lanes(lines_path(culane / path.lstrip("/")))]
+        listed = [path.lstrip("/") for path in
+                  (lists / list_name).read_text(encoding="utf-8").split()]
+        # Перша тека шляху — архів CULane, з якого кадр (docs/data.md, чому не всі).
+        candidates = [path for path in listed
+                      if path.split("/")[0] in data["archives"]
+                      and (culane / path).is_file()
+                      and read_lanes(lines_path(culane / path))]
         if len(candidates) < data["per_group"]:
             raise ValueError(f"Група {group}: знайдено лише {len(candidates)} кадрів зі смугами, "
                              f"потрібно {data['per_group']}")

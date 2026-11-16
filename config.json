@@ -5,6 +5,7 @@
     "sample_dir": "data/sample",
     "sample_csv": "data/sample.csv",
     "per_group": 20,
+    "archives": ["driver_37_30frame", "driver_193_90frame"],
     "groups": {
       "normal": "test0_normal.txt",
       "crowd": "test1_crowd.txt",
