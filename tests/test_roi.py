@@ -43,7 +43,10 @@ def test_mask_narrows_towards_top():
 def test_config_polygon_top_corners_outside(config):
     mask = roi_mask((10, 10), config["roi"]["polygon"])
     assert not mask[0, 0] and not mask[0, 9]
-    assert mask[9, 4] and mask[9, 5]
+    # Область між y = 0.49·9 ≈ 4.4 і 0.72·9 ≈ 6.5: рядок 6 — усередині,
+    # нижній рядок 9 (капот на кадрах CULane) — ні.
+    assert mask[6, 4] and mask[6, 5]
+    assert not mask[9].any()
 
 
 def test_top_by_hand():
