@@ -73,6 +73,31 @@ def top_view_rectangle(out_size: tuple[int, int], margin: float) -> np.ndarray:
     return np.array([[left, 0], [right, 0], [right, bottom], [left, bottom]], dtype=np.float64)
 
 
+def extend_to_row(lane: np.ndarray, y_bottom: float) -> np.ndarray:
+    """Продовжує смугу вниз до рядка ``y_bottom`` по прямій останнього відрізка.
+
+    Вид зверху закінчується на лінії капота, а розмітку CULane проведено до
+    нижнього краю фото. Хаф продовжує свої прямі до низу — робимо те саме для
+    кривих p3: через дві найнижчі точки ``(x1, y1)``, ``(x2, y2)`` проводимо
+    пряму й беремо її точку на рядку ``y_bottom``:
+    ``x = x2 + (x2 − x1) · (y_bottom − y2) / (y2 − y1)``.
+
+    Повертає точки, впорядковані згори вниз, з доданою нижньою точкою. Смугу
+    з менш ніж двох точок або таку, що вже сягає ``y_bottom``, не змінює.
+    """
+    lane = np.asarray(lane, dtype=np.float64).reshape(-1, 2)
+    if len(lane) < 2:
+        return lane
+    # Впорядковуємо точки за y: останні дві — найближчі до авто.
+    lane = lane[np.argsort(lane[:, 1])]
+    (x1, y1), (x2, y2) = lane[-2], lane[-1]
+    # Горизонтальний останній відрізок (y2 = y1) продовжити вниз неможливо.
+    if y2 >= y_bottom or y2 == y1:
+        return lane
+    x_bottom = x2 + (x2 - x1) * (y_bottom - y2) / (y2 - y1)
+    return np.vstack([lane, [x_bottom, y_bottom]])
+
+
 def warp(image: np.ndarray, matrix: np.ndarray, out_size: tuple[int, int]) -> np.ndarray:
     """Деформує зображення зворотним відображенням.
 

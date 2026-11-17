@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from lanes.methods.prewitt import prewitt_gradients, prewitt_magnitude
+from lanes.methods.prewitt import edges_above, prewitt_gradients, prewitt_magnitude
 
 # 5×5: два темні стовпці (0) і три світлі (90) — вертикальний край між x = 1 і x = 2.
 EDGE = np.array([[0, 0, 90, 90, 90]] * 5, dtype=np.float64)
@@ -46,3 +46,20 @@ def test_constant_image_has_no_edges():
 
 def test_single_pixel():
     assert prewitt_magnitude(np.array([[7.0]])).shape == (1, 1)
+
+
+def test_edges_above_by_hand():
+    # Максимум 10, частка 0.3 → поріг 3: лишаються значення 4 і 10, а 3 — ні (строго більше).
+    magnitude = np.array([[0.0, 3.0, 4.0], [10.0, 1.0, 2.0]])
+    np.testing.assert_array_equal(edges_above(magnitude, 0.3, 255.0),
+                                  [[False, False, True], [True, False, False]])
+
+
+def test_edges_above_ignores_rounding_noise():
+    # Однотонне фото з яскравістю 128: «модуль» 3e-14 менший за 1e-9 · 128 —
+    # це похибка округлення, а не контур. Без перевірки відносний поріг
+    # оголосив би контуром увесь кадр.
+    noise = np.full((5, 5), 3e-14)
+    assert not edges_above(noise, 0.2, 128.0).any()
+    assert not edges_above(np.zeros((4, 4)), 0.2, 128.0).any()
+    assert edges_above(np.zeros((0, 0)), 0.2, 128.0).shape == (0, 0)

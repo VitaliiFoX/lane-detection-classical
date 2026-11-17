@@ -7,8 +7,9 @@ import numpy as np
 
 from lanes.methods.color import rgb_to_gray
 from lanes.methods.morphology import erode
-from lanes.methods.perspective import homography, top_view_rectangle, transform_points, warp
-from lanes.methods.prewitt import PREWITT_X, prewitt_magnitude
+from lanes.methods.perspective import (extend_to_row, homography, top_view_rectangle,
+                                       transform_points, warp)
+from lanes.methods.prewitt import PREWITT_X, edges_above, prewitt_magnitude
 from lanes.methods.sliding_windows import detect_lanes_top_view
 from lanes.pipelines.base import PipelineResult
 from lanes.roi import roi_polygon
@@ -40,7 +41,7 @@ def run(image: np.ndarray, config: dict) -> PipelineResult:
 
     # Стадія 2. Контури Прюітта, сильніші за частку найбільшого модуля.
     magnitude = prewitt_magnitude(top_view)
-    edges = magnitude > params["prewitt_threshold"] * magnitude.max()
+    edges = edges_above(magnitude, params["prewitt_threshold"], float(top_view.max()))
     # Кути виду зверху лежать поза фото й заповнені нулями; межа «фото —
     # порожнеча» дала б хибний контур. Деформуємо так само фото з одиниць —
     # це маска «тут є фото», звужуємо її ерозією на розмір ядра Прюітта
@@ -52,6 +53,9 @@ def run(image: np.ndarray, config: dict) -> PipelineResult:
     # Стадія 3. Смуги на виді зверху й повернення їх у координати фото.
     top_lanes, windows = detect_lanes_top_view(edges, params)
     lanes = [transform_points(lane, to_photo) for lane in top_lanes]
+    # Вид зверху закінчується над капотом; смуги продовжуємо до нижнього краю
+    # фото, як це робить Хаф у p1, p2 і p4.
+    lanes = [extend_to_row(lane, gray.shape[0] - 1) for lane in lanes]
 
     return PipelineResult(stages=[("top_view", top_view), ("prewitt_magnitude", magnitude),
                                   ("edges", edges), ("windows", windows)],

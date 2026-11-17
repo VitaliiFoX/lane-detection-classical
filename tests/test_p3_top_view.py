@@ -30,10 +30,12 @@ def test_stages_and_lanes_contract(config):
     assert stages["edges"].dtype == np.bool_
     assert stages["windows"].shape == (out_height, out_width, 3)
 
-    # Дві смуги по n_windows + 1 точок у координатах фото, а не виду зверху.
+    # Дві смуги в координатах фото, а не виду зверху: n_windows + 1 точок
+    # кривої і ще одна — продовження до нижнього краю фото.
     assert len(result.lanes) == 2
     for lane in result.lanes:
-        assert lane.shape == (config["p3"]["n_windows"] + 1, 2)
+        assert lane.shape == (config["p3"]["n_windows"] + 2, 2)
+        assert lane[-1, 1] == height - 1
         assert lane[:, 0].min() >= 0 and lane[:, 0].max() <= width - 1
         assert lane[:, 1].min() >= 0 and lane[:, 1].max() <= height - 1
 

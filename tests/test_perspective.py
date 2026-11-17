@@ -3,7 +3,8 @@
 import numpy as np
 import pytest
 
-from lanes.methods.perspective import homography, top_view_rectangle, transform_points, warp
+from lanes.methods.perspective import (extend_to_row, homography, top_view_rectangle,
+                                       transform_points, warp)
 
 IMAGE = np.arange(25, dtype=np.float64).reshape(5, 5)
 # Трапеція на фото й прямокутник виду зверху: верх-ліво, верх-право, низ-право, низ-ліво.
@@ -94,3 +95,28 @@ def test_degenerate_points_raise():
     # Усі чотири точки збіглися (фото 1×1) — перетворення не існує.
     with pytest.raises(np.linalg.LinAlgError):
         homography(np.zeros((4, 2)), DST)
+
+
+def test_extend_to_row_by_hand():
+    # Смуга йде вниз і ліворуч: (10, 0) → (8, 4), тобто x зменшується на 0.5 за рядок.
+    # До рядка y = 10 лишилося 6 рядків: x = 8 + (8 − 10) · (10 − 4) / (4 − 0) = 8 − 3 = 5.
+    lane = np.array([[10.0, 0.0], [8.0, 4.0]])
+    np.testing.assert_allclose(extend_to_row(lane, 10), [[10, 0], [8, 4], [5, 10]])
+
+
+def test_extend_to_row_uses_two_lowest_points():
+    # Точки записано знизу вгору, і смуга ламана: напрям продовження задають
+    # дві найнижчі точки (6, 2) → (6, 4), вертикальний відрізок, тож x = 6.
+    lane = np.array([[6.0, 4.0], [6.0, 2.0], [0.0, 0.0]])
+    np.testing.assert_allclose(extend_to_row(lane, 9), [[0, 0], [6, 2], [6, 4], [6, 9]])
+
+
+def test_extend_to_row_leaves_complete_and_degenerate_lanes():
+    # Смуга вже сягає рядка — нічого не додаємо.
+    lane = np.array([[1.0, 0.0], [2.0, 9.0]])
+    np.testing.assert_allclose(extend_to_row(lane, 9), lane)
+    # Останній відрізок горизонтальний — униз його продовжити неможливо.
+    flat = np.array([[1.0, 3.0], [5.0, 3.0]])
+    assert len(extend_to_row(flat, 9)) == 2
+    # Одна точка — не смуга.
+    assert extend_to_row(np.array([[1.0, 1.0]]), 9).shape == (1, 2)
