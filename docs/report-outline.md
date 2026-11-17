@@ -23,13 +23,16 @@
 Звіт цілком — `docs/report/zvit.md` (зібрано з чернеток учасників 17.11.2026;
 автор кожного розділу — у таблиці вище). Фото CULane в git не вставляємо (ліцензія):
 рисунки в `zvit.md` посилаються на `results/`, тож спершу `python main.py run --pipeline all`
-і `python main.py report`. Документ з рисунками (у git не комітимо):
+і `python main.py report`. Документ у форматі звітів до лаб — титулка з
+`docs/report/shablon.docx` (Фояк В.М., Сивопляс М.В.), кожен розділ з нової сторінки,
+підписи «Рисунок N — …» — збирає скрипт (у git результат не комітимо):
 
 ```bash
-pandoc docs/report/zvit.md -o results/zvit.docx --resource-path=.
+python tools/build_report.py      # results/zvit.docx і results/zvit.pdf
 ```
 
-`pandoc` встановлюється з https://pandoc.org (на macOS — `brew install pandoc`).
+Потрібні `pandoc` (https://pandoc.org, на macOS `brew install pandoc`) і LibreOffice
+(`soffice`) для PDF.
 
 Числа в звіті беремо лише з реальних прогонів (`results/`), ніколи не
 вигадуємо й не округлюємо на свою користь.

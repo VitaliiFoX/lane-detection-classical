@@ -4,7 +4,7 @@ STEM-проєкт з дисципліни «Комп'ютерна графіка
 
 Виконали: Фояк Віталій (p1, p2), Сивопляс Максим (p3, p4).
 
-Усі числа — з одного прогону `python main.py run --pipeline all`, `report`, `check` на 100 фото з параметрами `config.json` (`results/summary.csv`, `results/c1_check.csv`). Час залежить від комп'ютера, тому порівнюємо лише співвідношення часу між пайплайнами. Рисунки лежать у `results/` і в git не входять (на них кадри CULane, ліцензія); документ з рисунками збирає `pandoc` (див. `docs/report-outline.md`).
+Усі числа — з одного прогону `python main.py run --pipeline all`, `report`, `check` на 100 фото з параметрами `config.json` (`results/summary.csv`, `results/c1_check.csv`). Час залежить від комп'ютера, тому порівнюємо лише співвідношення часу між пайплайнами. Рисунки лежать у `results/` і в git не входять (на них кадри CULane, ліцензія); документ з титулкою й рисунками збирає `tools/build_report.py`.
 
 ## Анотація
 
@@ -221,10 +221,10 @@ IoU, PSNR і SSIM між маскою знайдених смуг та етал�
 займають лише близько 3 % пікселів кадру (порожня маска має PSNR 14,78 дБ);
 еталонні смуги пологі — кут до горизонталі за медіаною 26°.
 
-**[Рис. 1]** — по одному кадру кожної групи: `results/figures/examples_p0.png`
+На рисунку 1 — по одному кадру кожної групи: `results/figures/examples_p0.png`
 (оригінал і результат з еталонною розміткою; p0 власних ліній не малює).
 
-![Рис. 1. По одному кадру з кожної групи](results/figures/examples_p0.png){width=100%}
+![Рисунок 1 — По одному кадру з кожної групи](results/figures/examples_p0.png){width=55%}
 
 ## Спільна інфраструктура
 
@@ -322,14 +322,14 @@ return votes.reshape(n_rho, thetas.size), rhos, thetas_deg
 кольору, лишаться переважно смуги; межі цих плям дає фільтр Собеля, а прямі
 через них — Хаф.
 
-**[Рис. 2]** — стадії p1 на одному кадрі групи normal:
+На рисунку 2 — стадії p1 на одному кадрі групи normal:
 `results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/`
 `01_hsv_mask.png`, `02_sobel_magnitude.png`, `03_edges_roi.png`,
 `04_hough_space.png`, `overlay.png` (IoU 0,453).
 
-![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/01_hsv_mask.png){width=48%} ![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/02_sobel_magnitude.png){width=48%} ![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/03_edges_roi.png){width=48%} ![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/04_hough_space.png){width=48%}
+![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/01_hsv_mask.png){width=48%} ![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/02_sobel_magnitude.png){width=48%} ![](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/03_edges_roi.png){width=48%}
 
-![Рис. 2. Стадії p1: маска HSV, Собель, контури в ROI, простір Хафа, результат](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/overlay.png){width=100%}
+![Рисунок 2 — Стадії p1: маска HSV, Собель, контури в ROI, результат](results/p1/normal/driver_193_90frame__06060748_0790.MP4__00000/overlay.png){width=100%}
 
 **Стадія 1. Колірна маска в HSV** (`lanes/methods/color.py`). RGB переводимо
 в HSV вручну: `V = max(R, G, B)`, `S = (max − min) / max`, відтінок `H`
@@ -381,14 +381,14 @@ return white | yellow
 розтягує темний чи блідий кадр на весь діапазон 0…255, а поріг Оцу сам
 знаходить межу між «світлим» і «темним», без ручного підбору.
 
-**[Рис. 3]** — стадії p2 на тому самому кадрі:
+На рисунку 3 — стадії p2 на тому самому кадрі:
 `results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/`
 `01_equalized.png`, `02_otsu.png`, `03_hough_space.png`, `overlay.png`
 (IoU 0,210).
 
-![](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/01_equalized.png){width=32%} ![](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/02_otsu.png){width=32%} ![](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/03_hough_space.png){width=32%}
+![](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/01_equalized.png){width=48%} ![](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/02_otsu.png){width=48%}
 
-![Рис. 3. Стадії p2: вирівнювання, поріг Оцу, простір Хафа, результат](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/overlay.png){width=100%}
+![Рисунок 3 — Стадії p2: вирівнювання, поріг Оцу, результат](results/p2/normal/driver_193_90frame__06060748_0790.MP4__00000/overlay.png){width=100%}
 
 **Стадія 1. Вирівнювання гістограми** (`lanes/methods/histogram.py`). Сіре
 `Y = 0,299·R + 0,587·G + 0,114·B`, потім кожен рівень `v` замінюємо на
@@ -651,10 +651,10 @@ while True:
 | p1 | **0,194** | **0,099** | 0,084 | **0,213** | **0,101** |
 | p2 | 0,111 | 0,089 | **0,091** | 0,168 | 0,059 |
 
-**[Рис. 4]** — графік IoU за групами для всіх пайплайнів:
+На рисунку 4 — графік IoU за групами для всіх пайплайнів:
 `results/figures/iou_by_group.png`.
 
-![Рис. 4. Середній IoU за групами](results/figures/iou_by_group.png){width=100%}
+![Рисунок 4 — Середній IoU за групами](results/figures/iou_by_group.png){width=100%}
 
 **Де кращий який і чому:**
 
@@ -663,7 +663,7 @@ while True:
   кольору, а звичайний сірий асфальт темніший за цей поріг. Поріг p2 відносний:
   Оцу завжди ділить кадр на «світле» й «темне», тож найсвітліша частина
   асфальту потрапляє в маску навіть там, де фарби немає.
-- **Уночі p2 найслабший** (0,059). **[Рис. 5]**: кадр
+- **Уночі p2 найслабший** (0,059). **Рисунок 5**: кадр
   `night/driver_193_90frame__06042034_0519.MP4__02250` — p1 IoU 0,345, p2
   0,022 (стадії `01_hsv_mask.png` у p1 і `02_otsu.png` у p2). Після
   вирівнювання гістограми освітлена фарами частина дороги займає весь верх
@@ -676,10 +676,10 @@ while True:
 
 ![](results/p1/night/driver_193_90frame__06042034_0519.MP4__02250/overlay.png){width=48%} ![](results/p2/night/driver_193_90frame__06042034_0519.MP4__02250/overlay.png){width=48%}
 
-*Рис. 5. Нічний кадр: зліва p1 (маска HSV, результат), справа p2 (поріг Оцу, результат)*
+Рисунок 5 — Нічний кадр: зліва p1 (маска HSV, результат), справа p2 (поріг Оцу, результат)
 
 - **У тіні p2 трохи кращий** (0,091 проти 0,084), але обидва слабкі.
-  **[Рис. 6]**: кадр `shadow/driver_193_90frame__06051619_0732.MP4__02430`
+  **Рисунок 6**: кадр `shadow/driver_193_90frame__06051619_0732.MP4__02430`
   (під мостом; p1 0,090, p2 0,218). У маску p1 потрапляють біла машина й
   освітлені конструкції мосту — вони білі так само, як фарба. У p2 одна з
   прямих збіглася з правою смугою, звідси вищий IoU, хоча решта ліній теж
@@ -687,7 +687,7 @@ while True:
 
 ![](results/p1/shadow/driver_193_90frame__06051619_0732.MP4__02430/overlay.png){width=48%} ![](results/p2/shadow/driver_193_90frame__06051619_0732.MP4__02430/overlay.png){width=48%}
 
-*Рис. 6. Кадр у тіні під мостом: зліва p1, справа p2*
+Рисунок 6 — Кадр у тіні під мостом: зліва p1, справа p2
 
 - **Обидва пайплайни майже завжди знаходять 4 лінії** (у середньому 3,96 і
   4,00), хоча розмічено в середньому 3,4 смуги. Поріг голосів
@@ -719,9 +719,9 @@ while True:
 групами), `examples_p3.png` і `examples_p4.png` (фото → стадії → результат по
 одному кадру з кожної групи).
 
-![Рис. 7. Стадії p3 на кадрі кожної групи](results/figures/examples_p3.png){width=100%}
+![Рисунок 7 — Стадії p3 на кадрі кожної групи](results/figures/examples_p3.png){width=100%}
 
-![Рис. 8. Стадії p4 на кадрі кожної групи](results/figures/examples_p4.png){width=100%}
+![Рисунок 8 — Стадії p4 на кадрі кожної групи](results/figures/examples_p4.png){width=100%}
 
 
 Параметри підбирали на 20 фото (кожне п'яте). На 80 інших IoU p3 — 0,149,
@@ -789,11 +789,11 @@ p4 — 0,208, тобто майже як на всій вибірці: пара�
 `ssim_by_group.png`, `time_by_group.png`. Приклади стадій на одному кадрі з
 кожної групи: `results/figures/examples_p1.png` … `examples_p4.png`.
 
-![Рис. 9. Середній PSNR за групами](results/figures/psnr_by_group.png){width=100%}
+![Рисунок 9 — Середній PSNR за групами](results/figures/psnr_by_group.png){width=100%}
 
-![Рис. 10. Середній SSIM за групами](results/figures/ssim_by_group.png){width=100%}
+![Рисунок 10 — Середній SSIM за групами](results/figures/ssim_by_group.png){width=100%}
 
-![Рис. 11. Середній час обробки фото за групами](results/figures/time_by_group.png){width=100%}
+![Рисунок 11 — Середній час обробки фото за групами](results/figures/time_by_group.png){width=100%}
 
 Таблиця 6 — еталонні сценарії C1 (`results/c1_check.csv`). Для синтетичних
 сценаріїв показано середнє відхилення знайдених смуг від відомих; поріг
