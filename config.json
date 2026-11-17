@@ -49,14 +49,14 @@
     "otsu_iterations": 2
   },
   "p3": {
-    "src": [[0.43, 0.48], [0.57, 0.48], [0.95, 0.95], [0.05, 0.95]],
+    "src": [[0.415, 0.51], [0.525, 0.51], [0.87, 0.70], [0.07, 0.70]],
     "warp_size": [400, 600],
-    "warp_margin": 0.25,
-    "prewitt_threshold": 0.3,
+    "warp_margin": 0.1,
+    "prewitt_threshold": 0.2,
     "max_lanes": 4,
     "peak_min_distance": 60,
     "n_windows": 10,
-    "window_margin": 40,
+    "window_margin": 20,
     "min_pixels": 30,
     "poly_degree": 2
   },
@@ -64,8 +64,8 @@
     "tophat_width": 31,
     "canny_kernel": 5,
     "canny_sigma": 1.4,
-    "canny_low": 0.1,
-    "canny_high": 0.3
+    "canny_low": 0.05,
+    "canny_high": 0.1
   },
   "checks": {
     "offset_max_px": 5.0,
