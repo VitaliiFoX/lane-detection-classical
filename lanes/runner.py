@@ -109,6 +109,10 @@ def run_pipelines(config: dict, names: list[str], limit: int | None = None) -> P
     попередніх запусків у ``metrics.csv`` лишаються. Повертає шлях до файлу.
     """
     sample_dir = project_path(config["data"]["sample_dir"])
+    if not sample_dir.is_dir():
+        # Без цієї перевірки кожне зі 100 фото дало б окреме «пропущено».
+        raise FileNotFoundError(f"Немає фото в {sample_dir}: розпакуйте sample.zip "
+                                "або зберіть вибірку (docs/data.md)")
     samples = read_sample(project_path(config["data"]["sample_csv"]))[:limit]
     output = project_path(config["output_dir"])
     metrics_path = output / "metrics.csv"

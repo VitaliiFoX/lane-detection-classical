@@ -4,6 +4,7 @@ import csv
 import copy
 
 import numpy as np
+import pytest
 
 from lanes.io_utils import save_png
 from lanes.pipelines import REGISTRY, PipelineInfo
@@ -82,3 +83,10 @@ def test_rerun_keeps_other_pipelines_and_limit(config, tmp_path):
     # p1 з першого запуску (3 рядки) лишився, p0 перезапущено лише на 1 фото.
     assert sum(row["pipeline"] == "p1" for row in rows) == 3
     assert sum(row["pipeline"] == "p0" for row in rows) == 1
+
+
+def test_missing_sample_dir_is_explained(config, tmp_path):
+    config = _config(config, tmp_path)
+    config["data"]["sample_dir"] = str(tmp_path / "немає")
+    with pytest.raises(FileNotFoundError, match="sample.zip"):
+        run_pipelines(config, ["p0"])
