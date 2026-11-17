@@ -39,7 +39,7 @@ description: Взяти наступну задачу поточного уча�
 4. Запусти, з інтерпретатором `.venv` (`.venv/bin/python` або
    `.venv\Scripts\python.exe`):
    - `python -m pytest`
-   - `python -m pylint lanes tools tests main.py` — 10.00/10, без
+   - `python -m pylint lanes tools tests main.py gui.py` — 10.00/10, без
      повідомлень.
    Падає чуже — не виправляй чужий файл, скажи людині, чий він.
 5. Критерій «Готово, коли» з `PLAN.md` виконано буквально? Якщо ні —

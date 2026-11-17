@@ -60,7 +60,7 @@ Antigravity. `CLAUDE.md` поруч — заглушка, що імпортує 
 
 | Власник | Файли |
 |---|---|
-| Фояк Віталій | `lanes/config.py`, `lanes/filters.py`, `lanes/io_utils.py`, `lanes/draw.py`, `lanes/metrics.py`, `lanes/runner.py`, `lanes/methods/color.py`, `histogram.py`, `threshold.py`, `sobel.py`, `hough.py`, `lanes/pipelines/base.py`, `p0_baseline.py`, `p1_color.py`, `p2_otsu.py`, `tools/make_sample.py`, `main.py` |
+| Фояк Віталій | `lanes/config.py`, `lanes/filters.py`, `lanes/io_utils.py`, `lanes/draw.py`, `lanes/metrics.py`, `lanes/runner.py`, `lanes/methods/color.py`, `histogram.py`, `threshold.py`, `sobel.py`, `hough.py`, `lanes/pipelines/base.py`, `p0_baseline.py`, `p1_color.py`, `p2_otsu.py`, `tools/make_sample.py`, `main.py`, `gui.py`, `tools/build_report.py` |
 | Сивопляс Максим | `lanes/roi.py`, `lanes/synthetic.py`, `lanes/checks.py`, `lanes/report.py`, `lanes/methods/prewitt.py`, `morphology.py`, `canny.py`, `perspective.py`, `sliding_windows.py`, `lanes/pipelines/p3_top_view.py`, `p4_tophat.py`, `tests/test_edge_cases.py` |
 | Разом | `config.json` (кожен — свою секцію `p1`…`p4`, спільні секції — за домовленістю), `PLAN.md`, `META-USAGE.md`, `README.md`, документи в `docs/` |
 
@@ -75,7 +75,7 @@ Antigravity. `CLAUDE.md` поруч — заглушка, що імпортує 
 python -m pip install -r requirements.txt
 
 python -m pytest                                   # усі тести
-python -m pylint lanes tools tests main.py         # має бути 10.00/10, 0 повідомлень
+python -m pylint lanes tools tests main.py gui.py         # має бути 10.00/10, 0 повідомлень
 
 python main.py run --pipeline p1 --limit 10        # пілот на 10 фото
 python main.py run --pipeline all                  # уся вибірка, усі пайплайни
@@ -97,7 +97,7 @@ python -m tools.make_sample                         # зібрати 100 фот�
    типи й форми масивів. Коментар до кожного нетривіального кроку.
 6. Тести: ручний розрахунок 3×3/5×5 + крайній випадок (порожнє чи однотонне
    зображення).
-7. `python -m pytest` і `python -m pylint lanes tools tests main.py` — зелено,
+7. `python -m pytest` і `python -m pylint lanes tools tests main.py gui.py` — зелено,
    10.00/10.
 8. Познач задачу `[x]` у `PLAN.md`, онови статус у `README.md`, якщо закрито
    етап, додай рядок у `META-USAGE.md`.

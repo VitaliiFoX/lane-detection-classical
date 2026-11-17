@@ -322,7 +322,7 @@ python main.py check
 
 ```bash
 python -m pytest
-python -m pylint lanes tools tests main.py
+python -m pylint lanes tools tests main.py gui.py
 ```
 
 ## 8. Запуск з нуля
